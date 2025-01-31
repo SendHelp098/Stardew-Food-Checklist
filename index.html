@@ -172,12 +172,19 @@
         }
 
         function updateProgress() { 
-            const checked = document.querySelectorAll("input:checked").length;
-            const total = document.querySelectorAll("input").length;
-            const progressPercent = Math.round((checked / total) * 100);
-            document.getElementById("progressFill").style.width = `${progressPercent}%`;
-            document.getElementById("progressText").textContent = `${progressPercent}% Complete`;
-        }
+    const checked = document.querySelectorAll("input:checked").length;
+    const total = document.querySelectorAll("input").length;
+    
+    let progressPercent = Math.round((checked / total) * 100);
+    
+    // Ensure it reaches 100% when all items are checked
+    if (checked === total) {
+        progressPercent = 100;
+    }
+
+    document.getElementById("progressFill").style.width = `${progressPercent}%`;
+    document.getElementById("progressText").textContent = `${progressPercent}% Complete`;
+}
 
         function searchItems() {
             const search = document.getElementById("search").value.toLowerCase();
